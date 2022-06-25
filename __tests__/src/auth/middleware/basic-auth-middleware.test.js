@@ -3,7 +3,7 @@
 process.env.SECRET = "TEST_SECRET";
 
 const base64 = require('base-64');
-const middleware = require('../../../../src/auth/middleware/basic.js');
+const middleware = require('../../../../src/auth/middlewares/basic');
 const { db, users } = require('../../../../src/auth/models/index.js');
 
 let userInfo = {

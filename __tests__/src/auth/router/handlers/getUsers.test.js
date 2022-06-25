@@ -3,13 +3,10 @@
 process.env.SECRET = "TEST_SECRET";
 
 const { db, } = require('../../../../../src/auth/models');
-const { handleGetUsers } = require('../../../../../src/auth/router/handlers.js');
+const { handleGetUsers } = require('../../../../../src/auth/routs/getUsers');
 
 beforeAll(async () => {
   await db.sync();
-});
-afterAll(async () => {
-  await db.drop();
 });
 
 
@@ -31,4 +28,8 @@ describe('Router handler for getUsers', () => {
     expect(res.json).toHaveBeenCalledWith(expect.anything());
   });
 
+  afterAll(async () => {
+    await db.drop();
+  });
+  
 });

@@ -3,14 +3,12 @@
 process.env.SECRET = "TEST_SECRET";
 
 const { db } = require('../../../../../src/auth/models');
-const { handleSignup } = require('../../../../../src/auth/router/handlers.js');
+const { handleSignup } = require('../../../../../src/auth/routs/signup');
 
 beforeAll(async () => {
   await db.sync();
 });
-afterAll(async () => {
-  await db.drop();
-});
+
 
 describe('testing the Signup Handler', () => {
 
@@ -48,5 +46,8 @@ describe('testing the Signup Handler', () => {
     expect(res.status).not.toHaveBeenCalled();
     expect(res.json).not.toHaveBeenCalled();
     expect(next).toHaveBeenCalledWith(expect.anything());
+  });
+  afterAll(async () => {
+    await db.drop();
   });
 });
