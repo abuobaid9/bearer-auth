@@ -16,9 +16,7 @@ let accessToken = null;
 beforeAll(async () => {
   await db.sync();
 });
-afterAll(async () => {
-  await db.drop();
-});
+
 
 describe('Auth Router', () => {
 
@@ -117,5 +115,8 @@ describe('Auth Router', () => {
 
     expect(response.status).toBe(403);
     expect(response.text).toEqual("Invalid Login");
+  });
+  afterAll(async () => {
+    await db.drop();
   });
 });

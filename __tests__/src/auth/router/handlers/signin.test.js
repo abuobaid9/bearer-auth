@@ -3,15 +3,13 @@
 process.env.SECRET = "TEST_SECRET";
 
 const { db, users } = require('../../../../../src/auth/models');
-const { handleSignin } = require('../../../../../src/auth/router/handlers.js');
+const { handleSignin } = require('../../../../../src/auth/routs/signin');
 
 beforeAll(async () => {
   await db.sync();
   await users.create({ username: 'test', password: 'test' });
 });
-afterAll(async () => {
-  await db.drop();
-});
+
 
 describe('Testing the signin handler', () => {
 
@@ -50,5 +48,8 @@ describe('Testing the signin handler', () => {
     expect(res.send).not.toHaveBeenCalled();
     expect(res.json).not.toHaveBeenCalled();
     expect(next).toHaveBeenCalled();
+  });
+  afterAll(async () => {
+    await db.drop();
   });
 });

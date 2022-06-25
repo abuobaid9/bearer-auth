@@ -2,7 +2,7 @@
 
 process.env.SECRET = "TEST_SECRET";
 
-const bearer = require('../../../../src/auth/middleware/bearer.js');
+const bearer = require('../../../../src/auth/middlewares/bearer');
 const { db, users } = require('../../../../src/auth/models/index.js');
 const jwt = require('jsonwebtoken');
 
